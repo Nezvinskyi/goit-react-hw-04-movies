@@ -29,4 +29,17 @@ const fetchReviews = async id => {
   return response.data.results;
 };
 
-export default { fetchMovies, fetchById, fetchCast, fetchReviews };
+const searchMovies = async query => {
+  const response = await axios.get(
+    `${BASE_URL}/search/movie?api_key=${API}&query=${query}`,
+  );
+  return response.data.results;
+};
+
+export default {
+  fetchMovies,
+  fetchById,
+  fetchCast,
+  fetchReviews,
+  searchMovies,
+};

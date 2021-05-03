@@ -1,26 +1,46 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
+import SearchForm from '../components/SearchForm';
+import api from '../services/movies-api';
 
 class MoviesView extends Component {
   state = {
-    query: '',
+    SearchQuery: '',
+    movies: [],
   };
 
-  handleChange = event => {
-    this.setState({ query: event.currentTarget.value });
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.SearchQuery !== this.state.SearchQuery) {
+      this.fetchMovies();
+    }
+  }
+
+  onChangeQuery = query => {
+    this.setState({ SearchQuery: query });
+  };
+
+  fetchMovies = async () => {
+    try {
+      const movies = await api.searchMovies(this.state.SearchQuery);
+      this.setState({ movies });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   render() {
     return (
       <div>
         <h1>Movies</h1>
-        <form action="">
-          <input
-            type="text"
-            value={this.state.query}
-            onChange={this.handleChange}
-          />
-          <button type="submit">Search</button>
-        </form>
+        <SearchForm onSubmit={this.onChangeQuery} />
+
+        <ul>
+          {this.state.movies.map(({ id, title, name }) => (
+            <li key={id}>
+              <NavLink to={`/movies/${id}`}>{title || name}</NavLink>
+            </li>
+          ))}
+        </ul>
       </div>
     );
   }

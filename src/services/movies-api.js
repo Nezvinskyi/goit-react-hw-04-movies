@@ -15,4 +15,11 @@ const fetchById = async id => {
   return response.data;
 };
 
-export default { fetchMovies, fetchById };
+const fetchCast = async id => {
+  const response = await axios.get(
+    `${BASE_URL}/movie/${id}/credits?api_key=${API}`,
+  );
+  return response.data.cast;
+};
+
+export default { fetchMovies, fetchById, fetchCast };

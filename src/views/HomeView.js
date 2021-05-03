@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import api from '../services/movies-api';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 class HomeView extends Component {
   state = {
@@ -19,7 +19,7 @@ class HomeView extends Component {
         <ul>
           {this.state.trending.map(movie => (
             <li key={movie.id}>
-              <Link to={`/movies/${movie.id}`}>{movie.original_title}</Link>
+              <NavLink to={`/movies/${movie.id}`}>{movie.title}</NavLink>
             </li>
           ))}
         </ul>

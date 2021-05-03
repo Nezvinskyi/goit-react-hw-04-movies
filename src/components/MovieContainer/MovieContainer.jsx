@@ -1,6 +1,7 @@
 const IMG_URL = 'https://image.tmdb.org/t/p/w400'
 
 const MovieContainer = ({ backdrop_path, id, original_title, vote_average, overview, genres }) => {
+	// console.log(genres);
 	return (
 		<>
 			<img src={`${IMG_URL}/${backdrop_path}`} alt={`Poster of ${original_title}`} />

@@ -1,10 +1,10 @@
 import { NavLink } from 'react-router-dom';
 
-import styles from './Searchbar.module.scss'
+import styles from './AppBar.module.scss'
 
-const Searchbar = () => {
+const AppBar = () => {
 	return (
-		<header className={styles.Searchbar}>
+		<header className={styles.AppBar}>
 			<nav className={styles.NavigationList}>
 				<ul>
 					<li>
@@ -31,4 +31,4 @@ const Searchbar = () => {
 		</header> );
 }
  
-export default Searchbar;
+export default AppBar;

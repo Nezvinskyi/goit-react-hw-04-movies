@@ -17,9 +17,9 @@ class HomeView extends Component {
       <div>
         <h1>Trending today</h1>
         <ul>
-          {this.state.trending.map(movie => (
-            <li key={movie.id}>
-              <NavLink to={`/movies/${movie.id}`}>{movie.title}</NavLink>
+          {this.state.trending.map(({ id, title, name }) => (
+            <li key={id}>
+              <NavLink to={`/movies/${id}`}>{title || name}</NavLink>
             </li>
           ))}
         </ul>

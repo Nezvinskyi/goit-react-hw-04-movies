@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink, Route } from 'react-router-dom';
 import Cast from '../Cast';
+import Reviews from '../Reviews';
 
 class InfoContainer extends Component {
 	state = {  }
@@ -23,6 +24,15 @@ class InfoContainer extends Component {
 					render={(props) => {
 						return <Cast cast={this.props.cast }/>
 					}}
+					/>}
+				
+				{this.props.reviews &&
+					<Route
+					path={`${this.props.match.path}/reviews`}
+					render={(props) => {
+						return <Reviews reviews={ this.props.reviews }/>
+					}}
+					
 					/>}
 			</>
 		 );

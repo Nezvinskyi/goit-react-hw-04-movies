@@ -8,13 +8,15 @@ class MovieDetailsView extends Component {
   state = {
     movie: {},
     cast: [],
+    reviews: [],
   };
 
   async componentDidMount() {
     const movieId = this.props.match.params.movieId;
     const movie = await api.fetchById(movieId);
     const cast = await api.fetchCast(movieId);
-    this.setState({ movie, cast });
+    const reviews = await api.fetchReviews(movieId);
+    this.setState({ movie, cast, reviews });
   }
   render() {
     const {
@@ -44,7 +46,13 @@ class MovieDetailsView extends Component {
           <Route
             path={`/movies/:movieId`}
             render={props => {
-              return <InfoContainer {...props} cast={this.state.cast} />;
+              return (
+                <InfoContainer
+                  {...props}
+                  cast={this.state.cast}
+                  reviews={this.state.reviews}
+                />
+              );
             }}
           />
         )}

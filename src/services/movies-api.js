@@ -22,4 +22,11 @@ const fetchCast = async id => {
   return response.data.cast;
 };
 
-export default { fetchMovies, fetchById, fetchCast };
+const fetchReviews = async id => {
+  const response = await axios.get(
+    `${BASE_URL}/movie/${id}/reviews?api_key=${API}`,
+  );
+  return response.data.results;
+};
+
+export default { fetchMovies, fetchById, fetchCast, fetchReviews };

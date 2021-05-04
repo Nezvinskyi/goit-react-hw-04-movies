@@ -44,7 +44,7 @@ class MovieDetailsView extends Component {
 
         {id && (
           <Route
-            path={`/movies/:movieId`}
+            path={this.props.match.path}
             render={props => {
               return (
                 <InfoContainer

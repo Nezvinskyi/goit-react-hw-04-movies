@@ -17,6 +17,11 @@ class MoviesView extends Component {
 
   onChangeQuery = query => {
     this.setState({ SearchQuery: query });
+
+    this.props.history.push({
+      pathname: this.props.location.pathname,
+      search: `query=${query}`,
+    });
   };
 
   fetchMovies = async () => {

@@ -1,4 +1,4 @@
-const IMG_URL = 'https://image.tmdb.org/t/p/w400'
+const IMG_URL = 'https://image.tmdb.org/t/p/w500'
 
 const MovieContainer = ({ backdrop_path, original_title, vote_average, overview, genres, poster_path }) => {
 	return (
@@ -10,7 +10,6 @@ const MovieContainer = ({ backdrop_path, original_title, vote_average, overview,
 			<p>{overview}</p>
 			<h2>Genres</h2>
 			<p>{genres.map(genre=>genre.name).join(' ')}</p>
-			
 		</>
 	 );
 }

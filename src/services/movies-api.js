@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 import axios from 'axios';
 
 const API = '4b778d4c29fb731b86ff7a9149d1de58';

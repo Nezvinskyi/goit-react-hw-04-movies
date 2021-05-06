@@ -1,51 +1,23 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
-import SearchForm from '../components/SearchForm';
 import api from '../services/movies-api';
+
+import MoviesList from '../components/MoviesList';
 
 class MoviesView extends Component {
   state = {
-    SearchQuery: '',
-    movies: [],
+    trending: [],
   };
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.SearchQuery !== this.state.SearchQuery) {
-      this.fetchMovies();
-    }
+  async componentDidMount() {
+    const trending = await api.fetchMovies();
+    this.setState({ trending });
   }
-
-  onChangeQuery = query => {
-    this.setState({ SearchQuery: query });
-
-    this.props.history.push({
-      pathname: this.props.location.pathname,
-      search: `query=${query}`,
-    });
-  };
-
-  fetchMovies = async () => {
-    try {
-      const movies = await api.searchMovies(this.state.SearchQuery);
-      this.setState({ movies });
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   render() {
     return (
-      <div>
-        <h1>Movies</h1>
-        <SearchForm onSubmit={this.onChangeQuery} />
-
-        <ul>
-          {this.state.movies.map(({ id, title, name }) => (
-            <li key={id}>
-              <NavLink to={`/movies/${id}`}>{title || name}</NavLink>
-            </li>
-          ))}
-        </ul>
+      <div className="container-fluid">
+        <h1>Trending today</h1>
+        <MoviesList movies={this.state.trending} />
       </div>
     );
   }

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import api from '../services/movies-api';
 import MovieContainer from '../components/MovieContainer';
 import InfoContainer from '../components/InfoContainer';
+import routes from '../routes';
 
 class MovieDetailsView extends Component {
   state = {
@@ -18,6 +19,12 @@ class MovieDetailsView extends Component {
     const reviews = await api.fetchReviews(movieId);
     this.setState({ movie, cast, reviews });
   }
+
+  handleGoBack = () => {
+    const { history, location } = this.props;
+    history.push(location?.state?.from || routes.movies);
+  };
+
   render() {
     const {
       backdrop_path,
@@ -26,14 +33,18 @@ class MovieDetailsView extends Component {
       vote_average,
       overview,
       genres,
+      poster_path,
     } = this.state.movie;
     return (
-      <>
-        <Link to="">Go back</Link>
+      <div className="container-fluid">
+        <button type="button" className="btn" onClick={this.handleGoBack}>
+          Go back
+        </button>
         <h1>movie details</h1>
         {id && (
           <MovieContainer
             backdrop_path={backdrop_path}
+            poster_path={poster_path}
             id={id}
             original_title={original_title}
             vote_average={vote_average}
@@ -56,7 +67,7 @@ class MovieDetailsView extends Component {
             }}
           />
         )}
-      </>
+      </div>
     );
   }
 }

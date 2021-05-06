@@ -37,10 +37,14 @@ class MovieDetailsView extends Component {
     } = this.state.movie;
     return (
       <div className="container-fluid">
-        <button type="button" className="btn" onClick={this.handleGoBack}>
+        <button
+          type="button"
+          className="btn btn-outline-primary"
+          onClick={this.handleGoBack}
+        >
           Go back
         </button>
-        <h1>movie details</h1>
+
         {id && (
           <MovieContainer
             backdrop_path={backdrop_path}

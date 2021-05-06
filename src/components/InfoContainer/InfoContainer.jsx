@@ -13,32 +13,33 @@ class InfoContainer extends Component {
 	}
 
 	render() {
+		const{match, cast, reviews }=this.props
 		return (
 			<>
 				<h3>Additional info</h3>
 				<ul>
 					<li>
-						<NavLink to={`${this.props.match.url}/cast`}>Cast</NavLink>
+						<NavLink to={`${match.url}/cast`}>Cast</NavLink>
 					</li>
 					<li>
-						<NavLink to={`${this.props.match.url}/reviews`}>Reviews</NavLink>
+						<NavLink to={`${match.url}/reviews`}>Reviews</NavLink>
 					</li>
 				</ul>
 
 				<div ref={ulRef}>
-					{this.props.cast &&
+					{cast &&
 						<Route
-						path={`${this.props.match.path}/cast`}
-						render={(props) => {
-							return <Cast cast={this.props.cast }/>
+						path={`${match.path}/cast`}
+						render={() => {
+							return <Cast cast={cast }/>
 						}}
 						/>}
 					
-					{this.props.reviews &&
+					{reviews &&
 						<Route
-						path={`${this.props.match.path}/reviews`}
+						path={`${match.path}/reviews`}
 						render={(props) => {
-							return <Reviews reviews={ this.props.reviews }/>
+							return <Reviews reviews={ reviews }/>
 						}}
 						
 						/>}

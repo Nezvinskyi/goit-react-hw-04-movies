@@ -1,10 +1,17 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 import { NavLink, Route } from 'react-router-dom';
 import Cast from '../Cast';
 import Reviews from '../Reviews';
 
+const ulRef = createRef()
+
 class InfoContainer extends Component {
-	state = {  }
+	state = {};
+
+	componentDidUpdate() {
+		ulRef.current.scrollIntoView({behavior: "smooth"})
+	}
+
 	render() {
 		return (
 			<>
@@ -18,25 +25,27 @@ class InfoContainer extends Component {
 					</li>
 				</ul>
 
-				{this.props.cast &&
-					<Route
-					path={`${this.props.match.path}/cast`}
-					render={(props) => {
-						return <Cast cast={this.props.cast }/>
-					}}
-					/>}
-				
-				{this.props.reviews &&
-					<Route
-					path={`${this.props.match.path}/reviews`}
-					render={(props) => {
-						return <Reviews reviews={ this.props.reviews }/>
-					}}
+				<div ref={ulRef}>
+					{this.props.cast &&
+						<Route
+						path={`${this.props.match.path}/cast`}
+						render={(props) => {
+							return <Cast cast={this.props.cast }/>
+						}}
+						/>}
 					
-					/>}
+					{this.props.reviews &&
+						<Route
+						path={`${this.props.match.path}/reviews`}
+						render={(props) => {
+							return <Reviews reviews={ this.props.reviews }/>
+						}}
+						
+						/>}
+				</div>
 			</>
 		 );
-	}
-}
+	};
+};
  
 export default InfoContainer;

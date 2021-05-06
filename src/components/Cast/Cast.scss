@@ -5,7 +5,7 @@
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  grid-gap: 4px;
+  grid-gap: 25px;
 }
 .Cast-list .card {
   display: flex;

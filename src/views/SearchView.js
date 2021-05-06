@@ -14,9 +14,10 @@ class SearchView extends Component {
     if (location?.state?.searchQuery) {
       this.setState({ SearchQuery: location?.state?.searchQuery });
     }
-
-    const url = new URLSearchParams(window.location.search);
-    this.setState({ SearchQuery: url.get('query') });
+    if (window.location.search) {
+      const url = new URLSearchParams(window.location.search);
+      this.setState({ SearchQuery: url.get('query') });
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {

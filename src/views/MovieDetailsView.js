@@ -44,7 +44,7 @@ class MovieDetailsView extends Component {
         >
           Go back
         </button>
-        <h1>movie details</h1>
+
         {id && (
           <MovieContainer
             backdrop_path={backdrop_path}

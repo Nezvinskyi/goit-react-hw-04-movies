@@ -12,7 +12,6 @@ class SearchForm extends Component {
 	handleSubmit = (event) => {
 		event.preventDefault();
 		this.props.onSubmit(this.state.query);
-		this.setState({ query: '' });
 	}
 	
 	render() { 

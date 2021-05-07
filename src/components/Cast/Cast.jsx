@@ -1,6 +1,7 @@
 import noImg from '../../images/no-user-image.jpg'
 import './Cast.scss';
 
+
 const IMG_URL = 'https://image.tmdb.org/t/p/w200'
 
 const Cast = ({ cast }) => {

@@ -6,39 +6,46 @@ import Reviews from '../Reviews';
 const ulRef = createRef()
 
 class InfoContainer extends Component {
-	state = {};
+	state = {
+		pathState: {}
+	};
+
+	componentDidMount() {
+		this.setState({pathState: this.props.location?.state});
+	}
 
 	componentDidUpdate() {
-		ulRef.current.scrollIntoView({behavior: "smooth"})
+		ulRef.current.scrollIntoView({ behavior: "smooth" })
 	}
 
 	render() {
+		const { match, cast, reviews } = this.props
 		return (
 			<>
 				<h3>Additional info</h3>
 				<ul>
 					<li>
-						<NavLink to={`${this.props.match.url}/cast`}>Cast</NavLink>
+						<NavLink to={{pathname: `${match.url}/cast`, state: {from: this.state.pathState.from} }}>Cast</NavLink>
 					</li>
 					<li>
-						<NavLink to={`${this.props.match.url}/reviews`}>Reviews</NavLink>
+						<NavLink to={{ pathname: `${match.url}/reviews`, state: { from: this.state.pathState.from } }}>Reviews</NavLink>
 					</li>
 				</ul>
 
 				<div ref={ulRef}>
-					{this.props.cast &&
+					{cast &&
 						<Route
-						path={`${this.props.match.path}/cast`}
-						render={(props) => {
-							return <Cast cast={this.props.cast }/>
+						path={`${match.path}/cast`}
+						render={() => {
+							return <Cast cast={cast }/>
 						}}
 						/>}
 					
-					{this.props.reviews &&
+					{reviews &&
 						<Route
-						path={`${this.props.match.path}/reviews`}
+						path={`${match.path}/reviews`}
 						render={(props) => {
-							return <Reviews reviews={ this.props.reviews }/>
+							return <Reviews reviews={ reviews }/>
 						}}
 						
 						/>}
